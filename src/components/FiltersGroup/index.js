@@ -21,7 +21,7 @@ const FiltersGroup = props => {
     return (
       <div className="search-input-container">
         <input
-          type="button"
+          type="search"
           className="search-input"
           placeholder="Search"
           value={searchInput}
@@ -47,7 +47,7 @@ const FiltersGroup = props => {
       <div className="employment-type-container">
         <h1 className="employment-type-heading">Type Of Employment</h1>
         <ul className="employment-type-list-container">
-          {employmentTypesList.map(eachEmploymentType => {
+          {employmentTypesList.map(eachEmployeeType => {
             const {changeEmployeeList} = props
             const onSelectEmployeeType = event => {
               changeEmployeeList(event.target.value)
@@ -55,20 +55,20 @@ const FiltersGroup = props => {
             return (
               <li
                 className="employee-item"
-                key={eachEmploymentType.employmentTypeId}
+                key={eachEmployeeType.employmentTypeId}
                 onChange={onSelectEmployeeType}
               >
                 <input
                   type="checkbox"
-                  id={eachEmploymentType.employmentTypeId}
+                  id={eachEmployeeType.employmentTypeId}
                   className="check-input"
-                  value={eachEmploymentType.employmentTypeId}
+                  value={eachEmployeeType.employmentTypeId}
                 />
                 <label
-                  htmlFor={eachEmploymentType.employmentTypeId}
+                  htmlFor={eachEmployeeType.employmentTypeId}
                   className="check-label"
                 >
-                  {eachEmploymentType.label}
+                  {eachEmployeeType.label}
                 </label>
               </li>
             )

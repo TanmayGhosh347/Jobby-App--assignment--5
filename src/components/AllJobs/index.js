@@ -199,7 +199,7 @@ class AllJobs extends Component {
         type="button"
         onClick={this.onRetryProfile}
       >
-        retry
+        Retry
       </button>
     </div>
   }
@@ -242,7 +242,7 @@ class AllJobs extends Component {
           type="button"
           onClick={this.onRetryJobs}
         >
-          retry
+          Retry
         </button>
       </div>
     </div>
@@ -285,8 +285,8 @@ class AllJobs extends Component {
     }
   }
 
-  onGetCheckBoxView = () => {
-    ;<ul className="check-boxes-container">
+  onGetCheckBoxView = () => (
+    <ul className="check-boxes-container">
       {employmentTypesList.map(eachItem => (
         <li className="li-container" key={eachItem.employmentTypeId}>
           <input
@@ -301,10 +301,10 @@ class AllJobs extends Component {
         </li>
       ))}
     </ul>
-  }
+  )
 
-  onGetRadioButtonView = () => {
-    ;<ul className="radio-button-container">
+  onGetRadioButtonView = () => (
+    <ul className="radio-button-container">
       {salaryRangesList.map(eachItem => (
         <li className="li-container" key={eachItem.salaryRangeId}>
           <input
@@ -320,7 +320,7 @@ class AllJobs extends Component {
         </li>
       ))}
     </ul>
-  }
+  )
 
   onGetSearchInput = event => {
     this.setState({searchInput: event.target.value})

@@ -128,8 +128,8 @@ class Jobs extends Component {
     )
   }
 
-  renderFailureView = () => {
-    ;<div className="jobs-error-view-container">
+  renderFailureView = () => (
+    <div className="jobs-error-view-container">
       <img
         src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
         alt="failure view"
@@ -137,7 +137,7 @@ class Jobs extends Component {
       />
       <h1 className="jobs-failure-heading-text">Oops! Something Went Wrong</h1>
       <p className="jobs-failure-description">
-        We cannot seem to find the page you are looking fro
+        We cannot seem to find the page you are looking for
       </p>
       <button
         type="button"
@@ -148,7 +148,7 @@ class Jobs extends Component {
         Retry
       </button>
     </div>
-  }
+  )
 
   renderLoadingView = () => (
     <div className="loader-container" data-testid="loader">

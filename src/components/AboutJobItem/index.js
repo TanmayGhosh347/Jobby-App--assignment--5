@@ -42,33 +42,35 @@ class AboutJobItem extends Component {
     }
     const responseJobData = await fetch(jobDetailsApiUrl, optionsJobData)
     if (responseJobData.ok) {
-      const fetchedData = await responseJobData.json()
-      const updatedJobDetailsData = [fetchedData.job_details].map(eachItem => ({
-        companyLogoUrl: eachItem.company_logo_url,
-        companyWebsiteUrl: eachItem.company_website_url,
-        employmentType: eachItem.employmentType,
-        id: eachItem.id,
-        jobDescription: eachItem.job_description,
-        lifeAtCompany: {
-          description: eachItem.life_at_company.description,
-          imageUrl: eachItem.life_at_company.image_url,
-        },
-        location: eachItem.location,
-        packagesPerAnnum: eachItem.packages_per_annum,
-        rating: eachItem.rating,
-        skills: eachItem.skills.map(eachSkill => ({
-          imageUrl: eachSkill.image_url,
-          name: eachItem.name,
-        })),
-        title: eachItem.title,
-      }))
+      const fetchedJobData = await responseJobData.json()
+      const updatedJobDetailsData = [fetchedJobData.job_details].map(
+        eachItem => ({
+          companyLogoUrl: eachItem.company_logo_url,
+          companyWebsiteUrl: eachItem.company_website_url,
+          employmentType: eachItem.employment_type,
+          id: eachItem.id,
+          jobDescription: eachItem.job_description,
+          lifeAtCompany: {
+            description: eachItem.life_at_company.description,
+            imageUrl: eachItem.life_at_company.image_url,
+          },
+          location: eachItem.location,
+          packagePerAnnum: eachItem.package_per_annum,
+          rating: eachItem.rating,
+          skills: eachItem.skills.map(eachSkill => ({
+            imageUrl: eachSkill.image_url,
+            name: eachSkill.name,
+          })),
+          title: eachItem.title,
+        }),
+      )
 
-      const updatedSimilarJobDetails = fetchedData.similar_jobs.map(
+      const updatedSimilarJobDetails = fetchedJobData.similar_jobs.map(
         eachItem => ({
           companyLogoUrl: eachItem.company_logo_url,
           id: eachItem.id,
           jobDescription: eachItem.job_description,
-          employmentType: eachItem.employmentType,
+          employmentType: eachItem.employment_type,
           location: eachItem.location,
           rating: eachItem.rating,
           title: eachItem.title,
@@ -96,7 +98,7 @@ class AboutJobItem extends Component {
         jobDescription,
         lifeAtCompany,
         location,
-        packagesPerAnnum,
+        packagePerAnnum,
         rating,
         skills,
         title,
@@ -131,7 +133,7 @@ class AboutJobItem extends Component {
                   </div>
                 </div>
                 <div className="package-container">
-                  <p className="package">{packagesPerAnnum}</p>
+                  <p className="package">{packagePerAnnum}</p>
                 </div>
               </div>
             </div>
@@ -200,7 +202,7 @@ class AboutJobItem extends Component {
           type="button"
           onClick={this.onRetryJobDetailsAgain}
         >
-          retry
+          Retry
         </button>
       </div>
     </div>

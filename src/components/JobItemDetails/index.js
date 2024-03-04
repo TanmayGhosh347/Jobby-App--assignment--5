@@ -36,7 +36,6 @@ class JobItemDetails extends Component {
     id: data.id,
     jobDescription: data.job_description,
     location: data.location,
-    packagePerAnnum: data.package_per_annum,
     rating: data.rating,
     title: data.title,
   })
@@ -44,7 +43,7 @@ class JobItemDetails extends Component {
   getFormattedData = data => ({
     companyLogoUrl: data.company_logo_url,
     companyWebsiteUrl: data.company_website_url,
-    employmentType: data.employmentType,
+    employmentType: data.employment_type,
     id: data.id,
     jobDescription: data.job_description,
     lifeAtCompany: {
@@ -52,11 +51,11 @@ class JobItemDetails extends Component {
       imageUrl: data.life_at_company.image_url,
     },
     location: data.location,
-    packagesPerAnnum: data.packages_per_annum,
+    packagePerAnnum: data.package_per_annum,
     rating: data.rating,
     skills: data.skills.map(eachSkill => ({
       imageUrl: eachSkill.image_url,
-      name: data.name,
+      name: eachSkill.name,
     })),
     title: data.title,
   })
@@ -78,14 +77,14 @@ class JobItemDetails extends Component {
       const data = await response.json()
       console.log(data)
       const updatedData = this.getFormattedData(data.job_details)
-      const updatedSimilarData = data.similar_jobs.map(eachSimilarJob =>
+      const updatedSimilarJobsData = data.similar_jobs.map(eachSimilarJob =>
         this.getFormattedSimilarData(eachSimilarJob),
       )
       console.log(updatedData)
-      console.log(updatedSimilarData)
+      console.log(updatedSimilarJobsData)
       this.setState({
         jobData: updatedData,
-        similarJobsData: updatedSimilarData,
+        similarJobsData: updatedSimilarJobsData,
         apiStatus: apiStatusConstants.success,
       })
     } else {
@@ -109,15 +108,16 @@ class JobItemDetails extends Component {
           Oops! Something Went Wrong
         </h1>
         <p className="job-item-failure-description">
-          We cannot seem to find the page you are looking for.
+          We cannot seem to find the page you are looking for
         </p>
 
         <button
           className="job-item-failure-button"
           type="button"
+          id="button"
           onClick={this.getJobData}
         >
-          retry
+          Retry
         </button>
       </div>
     )
@@ -138,7 +138,7 @@ class JobItemDetails extends Component {
       jobDescription,
       lifeAtCompany,
       location,
-      packagesPerAnnum,
+      packagePerAnnum,
       rating,
       skills,
       title,
@@ -174,7 +174,7 @@ class JobItemDetails extends Component {
                   <p className="employee-type-heading">{employmentType}</p>
                 </div>
               </div>
-              <p className="packages-heading">{packagesPerAnnum}</p>
+              <p className="packages-heading">{packagePerAnnum}</p>
             </div>
           </div>
           <hr className="line" />
@@ -191,7 +191,7 @@ class JobItemDetails extends Component {
           <h1 className="skills-heading">Skills</h1>
           <ul className="skills-list-container">
             {skills.map(eachSkill => (
-              <SkillsCard skillDetails={eachSkill} key={eachSkill.id} />
+              <SkillsCard skillDetails={eachSkill} key={eachSkill.name} />
             ))}
           </ul>
           <h1 className="life-at-company-heading">Life at Company</h1>

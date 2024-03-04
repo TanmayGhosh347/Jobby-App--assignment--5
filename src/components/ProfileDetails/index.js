@@ -22,14 +22,14 @@ class ProfileCard extends Component {
     const token = Cookies.get('jwt_token')
     const apiUrl = 'https://apis.ccbp.in/profile'
     const options = {
-      method: 'GET',
       headers: {Authorization: `Bearer ${token}`},
+      method: 'GET',
     }
     const response = await fetch(apiUrl, options)
     if (response.ok) {
       const data = await response.json()
       const profileData = {
-        name: data.profile_details_name,
+        name: data.profile_details.name,
         profileImageUrl: data.profile_details.profile_image_url,
         shortBio: data.profile_details.short_bio,
       }
